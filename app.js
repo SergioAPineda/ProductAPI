@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const createProducts = require('./routes/create_product') 
-const updateProducts = require('./routes/update_product') 
+const updateProducts = require('./routes/update_product')
+const softDeleteProducts = require('./routes/soft_delete_product')
+const deleteProducts = require('./routes/delete_product') 
 
 mongoose.connect('mongodb://localhost:27017/projectDB', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
   .then(() => console.log('connected to MongoDB...'))
@@ -11,6 +13,8 @@ const app = express();
 app.use(express.json());
 app.use('/api/products', createProducts);
 app.use('/api/products', updateProducts);
+app.use('/api/products', softDeleteProducts);
+app.use('/api/products', deleteProducts);
 
 
 const port = process.env.PORT || 3000;
