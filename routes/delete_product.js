@@ -7,9 +7,8 @@ const route = express.Router();
 route.delete('/hard/:_id', (req, res) => {
   let result = deleteProduct(req.params._id);
   result.then(resultValue => {
-    console.log("El producto ha sido eliminado")
     res.json({
-      result: "El producto ha sido eliminado"
+      result: "The selected product was deleted"
     })
   }).catch(err => {
     res.status(400).json({
