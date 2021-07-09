@@ -1,6 +1,7 @@
 const express = require('express');
-const Product = require('../models/product-model');
+const Product = require('../models/product');
 const schema = require('../utils/data_validator');
+const createProduct = require('../services/create_product');
 
 const route = express.Router();
 
@@ -35,19 +36,5 @@ route.post('/', (req, res) => {
   }
 
 })
-
-
-async function createProduct(body) {
-  let product = new Product({
-    name:           body.name,
-    value:          body.value,
-    specialDate:    body.specialDate,
-    inFillMaterial: body.inFillMaterial,
-    state:          body.state,
-    description:    body.description,
-    expirationDate: body.expirationDate,
-  });
-  return await product.save();
-}
 
 module.exports = route;

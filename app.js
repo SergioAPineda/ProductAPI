@@ -1,10 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const createProducts = require('./routes/create_product') 
-const updateProducts = require('./routes/update_product')
-const softDeleteProducts = require('./routes/soft_delete_product')
-const deleteProducts = require('./routes/delete_product') 
-const getProductById = require('./routes/get_product_by_id')
+const createProducts = require('./controller/post-product') 
+const updateProducts = require('./controller/put-product')
+const softDeleteProducts = require('./controller/soft-delete-product')
+const deleteProducts = require('./controller/delete-product') 
+const getProductById = require('./controller/get-product-by-id')
 
 mongoose.connect('mongodb://localhost:27017/projectDB', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
   .then(() => console.log('connected to MongoDB...'))

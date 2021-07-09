@@ -1,5 +1,6 @@
 const express = require('express');
-const Product = require('../models/product-model');
+const Product = require('../models/product');
+const softDeleteProduct = require('../services/disable_product');
 
 
 const route = express.Router();
@@ -16,14 +17,5 @@ route.delete('/:_id', (req, res) => {
     })
   });
 });
-
-async function softDeleteProduct(_id){
-  let product = await Product.findByIdAndUpdate(_id, {
-    $set: {
-      state: "disabled"
-    }
-  }, {new: true});
-  return product;
-}
 
 module.exports = route;

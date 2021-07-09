@@ -1,5 +1,6 @@
 const express = require('express');
-const Product = require('../models/product-model');
+const Product = require('../models/product');
+const deleteProduct = require('../services/remove_product');
 
 
 const route = express.Router();
@@ -16,13 +17,5 @@ route.delete('/hard/:_id', (req, res) => {
     })
   });
 });
-
-async function deleteProduct(_id){
-  let product = await Product.findByIdAndDelete(_id, function(error){
-    if(error){
-      console.log(error);
-    }
-  });
-}
 
 module.exports = route;

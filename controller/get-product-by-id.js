@@ -1,5 +1,6 @@
 const express = require('express');
-const Product = require('../models/product-model');
+const Product = require('../models/product');
+const getProductById = require('../services/get_product_by_id');
 
 
 const route = express.Router();
@@ -17,10 +18,5 @@ route.get('/:_id', (req, res) => {
     })
   });
 });
-
-async function getProductById(_id){
-  let product = await Product.findById(_id)
-  return product 
-}
 
 module.exports = route;
