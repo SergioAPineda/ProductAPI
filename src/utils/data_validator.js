@@ -8,14 +8,19 @@ const schema = Joi.object({
     .min(1000)
     .required(),
   specialDate: Joi.string()
+    .min(3)
     .required(),  
   inFillMaterial: Joi.string()
+    .min(3)
     .required(),
   state: Joi.string()
+    .min(3)
     .required(),
   description: Joi.string()
+    .min(4)
     .required(),
   expirationDate: Joi.date()
+    .greater(Date.now())
     .required(),
 })
 

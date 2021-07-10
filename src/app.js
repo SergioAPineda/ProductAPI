@@ -1,5 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
 const createProducts = require('./controller/post-product') 
 const updateProducts = require('./controller/put-product')
 const softDeleteProducts = require('./controller/soft-delete-product')
@@ -8,6 +11,27 @@ const getProductById = require('./controller/get-product-by-id')
 const getAllProducts = require('./controller/get-allProducts')
 const getSoonToExpire = require('./controller/get-soonToExpire')
 const updateProductState = require('./controller/patch-productState')
+
+// Extended: http://swagger.io/specification/#infoObject
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      version: "1.0.0",
+      title: "Products API",
+      description: "Products API information for a virtual store",
+      contact: {
+        name: "Sergio Pineda"
+      },
+      servers: ["http://localhost:5000"]
+    }
+  },
+  // ['.routes/*.js']
+  apis: [".src/controller/*.js"]
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+
+
 mongoose.connect('mongodb://localhost:27017/projectDB', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
   .then(() => console.log('connected to MongoDB...'))
   .catch(error => console.log('Something went wrong: '+ error));
@@ -22,6 +46,7 @@ app.use('/api/products', getProductById);
 app.use('/api/products', getAllProducts);
 app.use('/api/products/expire', getSoonToExpire);
 app.use('/api/products', updateProductState);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 
 const port = process.env.PORT || 3000;
