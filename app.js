@@ -6,6 +6,7 @@ const softDeleteProducts = require('./controller/soft-delete-product')
 const deleteProducts = require('./controller/delete-product') 
 const getProductById = require('./controller/get-product-by-id')
 const getAllProducts = require('./controller/get-allProducts')
+const getSoonToExpire = require('./controller/get-soonToExpire')
 
 mongoose.connect('mongodb://localhost:27017/projectDB', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
   .then(() => console.log('connected to MongoDB...'))
@@ -19,6 +20,7 @@ app.use('/api/products', softDeleteProducts);
 app.use('/api/products', deleteProducts);
 app.use('/api/products', getProductById);
 app.use('/api/products', getAllProducts);
+app.use('/api/products/expire', getSoonToExpire);
 
 
 const port = process.env.PORT || 3000;
