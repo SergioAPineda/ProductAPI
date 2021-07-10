@@ -2,7 +2,7 @@ const express = require('express');
 const moment = require('moment');
 const Product = require('../models/product');
 
-async function getAllProducts2(){
+async function getProductsSoonToExpired(){
   let product = await Product.find()
   let newResult = product.filter(currentProduct =>{
 
@@ -18,4 +18,4 @@ async function getAllProducts2(){
   return newResult; 
 }
 
-module.exports = getAllProducts2;
+module.exports = getProductsSoonToExpired;

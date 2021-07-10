@@ -1,10 +1,10 @@
 const express = require('express');
-const getAllProducts2 = require('../services/get_products_soonToExpired');
+const getProductsSoonToExpired = require('../services/get_products_soonToExpired');
 
 const route = express.Router();
 
 route.get("/soon", (req, res) => {
-  let result = getAllProducts2();
+  let result = getProductsSoonToExpired();
   result.then(resultValue => {
     res.json({
       result: resultValue
