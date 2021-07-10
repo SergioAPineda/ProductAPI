@@ -3,6 +3,15 @@ const getAllProducts = require('../services/get_all_products');
 
 const route = express.Router();
 
+/**
+ * @swagger
+ * /api/products/:
+ *  get:
+ *    description: Este servicio sirve para traer todos los productos de la base de datos.
+ *    responses:
+ *      '200':
+ *        description: El servicio esta funcionando correctamente
+ */
 route.get("/", (req, res) => {
   let result = getAllProducts();
   result.then(resultValue => {

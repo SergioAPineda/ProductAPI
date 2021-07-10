@@ -5,9 +5,26 @@ const createProduct = require('../services/create_product');
 
 const route = express.Router();
 
+
+/**
+* @swagger
+* /api/products/:
+*  post:
+*    description: Este servicio sirve para agregar un nuevo producto.
+*    parameters:
+*      - name: Nuevo Producto
+*        in: body
+*        description: Ingrese el JSON de un nuevo producto (La informacion del producto debe estar completa).
+*        required: true
+*        schema:
+*          type: string
+*          format: string
+*    responses:
+*      '200':
+*        description: El servicio esta funcionando correctamente
+*/
 route.post('/', (req, res) => {
   let body = req.body;
-
   const {error, value} = schema.validate({ 
     name :          body.name,
     value:          body.value,

@@ -12,21 +12,22 @@ const getAllProducts = require('./controller/get-allProducts')
 const getSoonToExpire = require('./controller/get-soonToExpire')
 const updateProductState = require('./controller/patch-productState')
 
+const port = process.env.PORT || 3000;
 // Extended: http://swagger.io/specification/#infoObject
 const swaggerOptions = {
   swaggerDefinition: {
     info: {
       version: "1.0.0",
-      title: "Products API",
-      description: "Products API information for a virtual store",
+      title: "API de productos",
+      description: "API de administracion de productos para tienda virtual.",
       contact: {
         name: "Sergio Pineda"
       },
-      servers: ["http://localhost:5000"]
+      servers: [`http://localhost:${port}/api/products`]
     }
   },
   // ['.routes/*.js']
-  apis: [".src/controller/*.js"]
+  apis: ["src/controller/*.js"]
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -49,7 +50,7 @@ app.use('/api/products', updateProductState);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 
-const port = process.env.PORT || 3000;
+
 app.listen(port, () =>{
   console.log('Running on port: '+ port);
 })
