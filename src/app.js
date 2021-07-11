@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
+
 const createProducts = require('./controller/post-product') 
 const updateProducts = require('./controller/put-product')
 const softDeleteProducts = require('./controller/soft-delete-product')
@@ -48,8 +49,6 @@ app.use('/api/products', getAllProducts);
 app.use('/api/products/expire', getSoonToExpire);
 app.use('/api/products', updateProductState);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
-
 
 app.listen(port, () =>{
   console.log('Running on port: '+ port);

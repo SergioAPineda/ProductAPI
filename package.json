@@ -4,15 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js",
+    "test": "set NODE_ENV=test&& jest --watch --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@hapi/hapi": "^20.1.5",
     "@hapi/joi": "^17.1.1",
+    "axios": "^0.21.1",
     "express": "^4.17.1",
+    "jest": "^27.0.6",
     "moment": "^2.29.1",
     "mongoose": "^5.13.2",
     "swagger-jsdoc": "^6.1.0",
